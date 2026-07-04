@@ -2,7 +2,7 @@
 	'use strict';
 
 	var GITHUB_REPO_RE = /^https:\/\/github\.com\/([^/]+\/[^/?#]+)/i;
-	var CACHE_TTL_MS = 30 * 60 * 1000;
+	var CACHE_TTL_MS = 24 * 60 * 60 * 1000;
 
 	function parseRepo(url) {
 		var match = url.match(GITHUB_REPO_RE);
@@ -16,9 +16,17 @@
 		return String(count);
 	}
 
+	function parseStarMessage(message) {
+		var normalized = String(message).trim().toLowerCase();
+		if (normalized.slice(-1) === 'k') {
+			return Math.round(parseFloat(normalized) * 1000);
+		}
+		return parseInt(normalized.replace(/,/g, ''), 10);
+	}
+
 	function readCache(repo) {
 		try {
-			var raw = sessionStorage.getItem('gh-stars-' + repo);
+			var raw = localStorage.getItem('gh-stars-' + repo);
 			if (!raw) {
 				return null;
 			}
@@ -34,7 +42,7 @@
 
 	function writeCache(repo, count) {
 		try {
-			sessionStorage.setItem('gh-stars-' + repo, JSON.stringify({
+			localStorage.setItem('gh-stars-' + repo, JSON.stringify({
 				count: count,
 				ts: Date.now()
 			}));
@@ -43,13 +51,25 @@
 		}
 	}
 
-	function fetchStars(repo) {
-		var cached = readCache(repo);
-		if (cached !== null) {
-			return Promise.resolve(cached);
-		}
+	function fetchStarsFromShields(repo) {
+		return fetch('https://img.shields.io/github/stars/' + encodeURIComponent(repo) + '.json')
+			.then(function (response) {
+				if (!response.ok) {
+					throw new Error('shields.io request failed');
+				}
+				return response.json();
+			})
+			.then(function (data) {
+				var count = parseStarMessage(data.message);
+				if (!Number.isFinite(count)) {
+					throw new Error('Invalid star count');
+				}
+				return count;
+			});
+	}
 
-		return fetch('https://api.github.com/repos/' + repo, {
+	function fetchStarsFromGitHub(repo) {
+		return fetch('https://api.github.com/repos/' + encodeURIComponent(repo), {
 			headers: {
 				Accept: 'application/vnd.github+json'
 			}
@@ -59,7 +79,19 @@
 			}
 			return response.json();
 		}).then(function (data) {
-			var count = data.stargazers_count;
+			return data.stargazers_count;
+		});
+	}
+
+	function fetchStars(repo) {
+		var cached = readCache(repo);
+		if (cached !== null) {
+			return Promise.resolve(cached);
+		}
+
+		return fetchStarsFromShields(repo).catch(function () {
+			return fetchStarsFromGitHub(repo);
+		}).then(function (count) {
 			writeCache(repo, count);
 			return count;
 		});
@@ -97,7 +129,7 @@
 			fetchStars(repo).then(function (count) {
 				renderStars(repoLinks, count);
 			}).catch(function () {
-				// Leave the page unchanged if the API is unavailable.
+				// Leave the page unchanged if all providers are unavailable.
 			});
 		});
 	}
