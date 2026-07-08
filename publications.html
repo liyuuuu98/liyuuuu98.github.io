@@ -22,7 +22,7 @@
 			--accent: #2d7c8f;
 			--accent-dark: #1f6576;
 			--accent-soft: #f4fafb;
-			--line: rgba(52, 56, 60, 0.11);
+			--line: rgba(52, 56, 60, 0.08);
 		}
 
 		body {
@@ -185,29 +185,27 @@
 		}
 
 		.pub-list article {
-			border-bottom: 1px solid var(--line);
-			padding: 1.2em 0;
-		}
-
-		.pub-list article:first-child {
-			padding-top: 0;
-		}
-
-		.pub-list article:last-child {
 			border-bottom: 0;
+			padding: 0.9em 0 0;
+		}
+
+		.pub-list .pub-year + article {
+			padding-top: 0;
 		}
 
 		.pub-list .pub-year {
 			color: var(--muted);
 			font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif;
-			font-size: 0.82em;
+			font-size: 0.94em;
 			font-weight: 650;
 			letter-spacing: 0.02em;
-			margin: 1.5em 0 0.1em;
+			margin: 0 0 0.15em;
 		}
 
-		.pub-list .pub-year:first-child {
-			margin-top: 0;
+		.pub-list .pub-year:not(:first-child) {
+			border-top: 0;
+			margin-top: 1.55em;
+			padding-top: 0;
 		}
 
 		.pub-list h3 {
@@ -432,6 +430,11 @@
 				font-size: 0.92em;
 			}
 
+			#main h2 {
+				font-size: 1.22em;
+				line-height: 1.35;
+			}
+
 			body.is-touch #header {
 				background-color: #1f2325;
 				background-image:
@@ -458,14 +461,6 @@
 				gap: 0.22em;
 			}
 
-			#header h1 {
-				font-size: 1.12em;
-			}
-
-			#header h2 {
-				font-size: 0.7em;
-			}
-
 			#header .image.avatar {
 				width: 4.1em;
 			}
@@ -475,25 +470,12 @@
 				padding-top: 0.45em;
 			}
 
-			#footer .icons li .icon:before {
-				font-size: 0.94em;
-			}
-
 			.page-end-copyright {
-				font-size: 0.68em;
 				padding: 1.75em 1.25em 2.25em;
 			}
 
-			.pub-list h3 {
+			#main {
 				font-size: 0.9em;
-			}
-
-			.pub-list h5 {
-				font-size: 0.76em;
-			}
-
-			.pub-list h5.pub-venue a {
-				font-size: 0.88em;
 			}
 		}
 	</style>
@@ -695,11 +677,14 @@
 						<a class="pub-author-link" href="https://aruichen.github.io/" target="_blank" rel="noopener noreferrer">Rui Chen</a>,
 						Feipeng Tian,
 						Jiarui Liu,
-						Yuan-Chen Chen,
+						Yingcong Chen,
 						<a class="pub-author-link" href="https://ece.hkust.edu.hk/pingtan" target="_blank" rel="noopener noreferrer">Ping Tan</a>,
 						<a class="pub-author-link" href="https://www.xxlong.site/" target="_blank" rel="noopener noreferrer">Xiaoxiao Long</a>
 					</h5>
-					<h5 class="pub-venue">ACM Transactions on Graphics (TOG), 2025</h5>
+					<h5 class="pub-venue">
+						ACM Transactions on Graphics (TOG), 2025 (Present at SIGGRAPH 2026)
+						<a href="https://dl.acm.org/doi/10.1145/3759249">[Paper]</a>
+					</h5>
 				</article>
 
 				<article>

@@ -22,7 +22,7 @@
 			--accent: #2d7c8f;
 			--accent-dark: #1f6576;
 			--accent-soft: #f4fafb;
-			--line: rgba(52, 56, 60, 0.11);
+			--line: rgba(52, 56, 60, 0.08);
 		}
 
 		body {
@@ -92,9 +92,52 @@
 
 		.about-justify {
 			color: var(--text);
-			font-size: 0.94em;
 			line-height: 1.72;
 			text-align: left;
+		}
+
+		#one .about-justify,
+		#one .news-scroll ul li,
+		#four ul li {
+			color: var(--text);
+			font-size: 0.86em;
+		}
+
+		#one .news-scroll ul li,
+		#four ul li {
+			line-height: 1.55;
+		}
+
+		.news-scroll {
+			max-height: 11em;
+			overflow-y: auto;
+			-webkit-overflow-scrolling: touch;
+			scrollbar-color: rgba(52, 56, 60, 0.18) transparent;
+			scrollbar-width: thin;
+		}
+
+		.news-scroll ul {
+			list-style: none;
+			margin-bottom: 0;
+			padding-left: 0;
+			padding-right: 0.35em;
+		}
+
+		.news-scroll li {
+			display: grid;
+			grid-template-columns: 4.85em 1fr;
+			column-gap: 0.65em;
+			padding-left: 0;
+		}
+
+		.news-scroll li + li {
+			margin-top: 0.35em;
+		}
+
+		.news-date {
+			color: var(--muted);
+			font-variant-numeric: tabular-nums;
+			white-space: nowrap;
 		}
 
 		#header {
@@ -210,14 +253,77 @@
 			text-decoration: none;
 		}
 
+		#main > section {
+			border-top: 0;
+			margin: 1.55em 0 0 0;
+			padding: 0;
+		}
+
+		#main > section:first-child {
+			border-top: 0;
+			margin-top: 0;
+			padding-top: 0;
+		}
+
+		#one > h2 {
+			margin-top: 1.55em;
+			padding-top: 0;
+		}
+
 		#two .work-item {
-			border-bottom: 1px solid var(--line);
-			margin-bottom: 1.55em;
+			align-items: stretch;
+			display: grid;
+			grid-template-columns: 1fr 2fr;
+			column-gap: 1.25em;
+			margin-left: 0;
+			margin-top: 0;
+			padding: 0 0 0.35em 0;
+		}
+
+		#two .work-item > .col-4,
+		#two .work-item > .col-8 {
+			width: auto;
+		}
+
+		#two .work-item .col-4 {
+			align-self: start;
+			padding-left: 0;
+		}
+
+		#two .work-item .col-8 {
+			align-self: stretch;
+			display: flex;
+			flex-direction: column;
+			justify-content: center;
+			padding-left: 0;
+		}
+
+		#two .work-item .col-8 > span {
+			width: 100%;
+		}
+
+		#two .work-item:last-child {
+			padding-bottom: 0;
+		}
+
+		#two > .box.alt {
+			margin-bottom: 2em;
+		}
+
+		#two {
 			padding-bottom: 1.55em;
 		}
 
-		#two .box:last-of-type .work-item {
-			border-bottom: 0;
+		#two .work-item > * {
+			padding-top: 0;
+		}
+
+		#two .work-item.row.gtr-50 > * {
+			padding-left: 0;
+		}
+
+		#two .work-item.row.gtr-uniform {
+			margin-top: 0;
 		}
 
 		#two .image.fit,
@@ -225,6 +331,7 @@
 			background: #fff;
 			border: 1px solid var(--line);
 			box-shadow: 0 0.45em 1.4em rgba(31, 43, 48, 0.055);
+			margin-bottom: 0;
 			overflow: hidden;
 		}
 
@@ -265,13 +372,18 @@
 			font-size: 0.96em;
 			font-weight: 560;
 			line-height: 1.42;
-			margin-top: -0.1em;
+			margin-top: 0;
 		}
 
 		#two .work-item h5 {
 			color: var(--text);
 			font-size: 0.8em;
 			line-height: 1.55;
+			margin: 0;
+		}
+
+		#two .work-item h5 + h5 {
+			margin-top: 0.15em;
 		}
 
 		#two .work-item h5 a:not(.pub-author-link) {
@@ -330,6 +442,20 @@
 
 		#three table tbody tr {
 			transition: background-color 0.18s ease-in-out;
+		}
+
+		#three .exp-org {
+			align-items: center;
+			display: inline-flex;
+			gap: 0.65em;
+		}
+
+		#three .exp-icon {
+			border-radius: 0.22em;
+			flex-shrink: 0;
+			height: 1.2em;
+			object-fit: contain;
+			width: 1.2em;
 		}
 
 		#three table tbody tr:hover {
@@ -498,6 +624,17 @@
 				font-size: 0.92em;
 			}
 
+			#one .about-justify,
+			#one .news-scroll ul li,
+			#four ul li {
+				font-size: 0.8em;
+			}
+
+			#main h2 {
+				font-size: 1.22em;
+				line-height: 1.35;
+			}
+
 			body.is-touch #header {
 				background-color: #1f2325;
 				background-image:
@@ -524,14 +661,6 @@
 				gap: 0.22em;
 			}
 
-			#header h1 {
-				font-size: 1.12em;
-			}
-
-			#header h2 {
-				font-size: 0.7em;
-			}
-
 			#header .image.avatar {
 				width: 4.1em;
 			}
@@ -541,25 +670,21 @@
 				padding-top: 0.45em;
 			}
 
-			#footer .icons li .icon:before {
-				font-size: 0.94em;
-			}
-
 			.page-end-copyright {
-				font-size: 0.68em;
 				padding: 1.75em 1.25em 2.25em;
 			}
 
-			#two .work-item h4 {
-				font-size: 0.86em;
+			#main {
+				font-size: 0.9em;
 			}
 
-			#two .work-item h5 {
-				font-size: 0.7em;
+			#three table td {
+				font-size: 0.75em;
 			}
 
-			#two .work-item h5 a:not(.pub-author-link) {
-				font-size: 0.88em;
+			#two .work-item {
+				grid-template-columns: 1fr;
+				row-gap: 0.75em;
 			}
 		}
 	</style>
@@ -629,7 +754,7 @@
 				<br />
 				My research focuses on
 				3D Content Generation, with broader interests in
-				Point Cloud Processing, Efficient Computer Vision, and HCI with AR.
+				Controllable Video Generation, Efficient Computer Vision, and HCI with AR.
 				I am fascinated by how we can capture, generate, and interact with the 3D world in virtual spaces.
 				My goal is to build expressive and controllable virtual worlds with the help of AI.
 				<br>
@@ -638,17 +763,18 @@
 
 
 			<h2>News</h2>
-			<div class="row">
-				<div class="col-12 col-12-xsmall">
-					<ul>
-						<li>One paper was selected as a CVPR 2026 highlight.</li>
-						<li>One paper was selected as a CVPR 2025 oral presentation.</li>
-						<li>One paper was accepted to ICLR 2024.</li>
-						<li>One paper was accepted to SIGGRAPH 2023 (TOG).</li>
-						<li>One paper was accepted to Eurographics 2022.</li>
-						<li>Won two special prizes in the Pilot Cup National University High Performance Computing Competition with RMB 200k bonus.</li> 
-					</ul>
-				</div>
+			<div class="news-scroll">
+				<ul>
+					<li><time class="news-date" datetime="2026-04">Apr 2026</time> MeshFlow was selected as a CVPR 2026 highlight.</li>
+					<li><time class="news-date" datetime="2026-02">Feb 2026</time> Four papers were accepted to CVPR 2026.</li>
+					<li><time class="news-date" datetime="2025-04">Apr 2025</time> CraftsMan3D was selected as a CVPR 2025 oral presentation.</li>
+					<li><time class="news-date" datetime="2025-02">Feb 2025</time> Two papers were accepted to CVPR 2025.</li>
+					<li><time class="news-date" datetime="2024-01">Jan 2024</time> One paper was accepted to ICLR 2024.</li>
+					<li><time class="news-date" datetime="2023-03">Mar 2023</time> One paper was accepted to SIGGRAPH 2023 (TOG).</li>
+					<li><time class="news-date" datetime="2023-02">Feb 2023</time> One paper was accepted to CVPR 2023.</li>
+					<li><time class="news-date" datetime="2022-02">Feb 2022</time> One paper was accepted to Eurographics 2022.</li>
+					<li><time class="news-date" datetime="2020-08">Aug 2020</time> Won two special prizes in the Pilot Cup National University High Performance Computing Competition with RMB 200k bonus.</li>
+				</ul>
 			</div>
 		</section>
 
@@ -678,7 +804,6 @@
 								Rakesh Ranjan,
 								<a class="pub-author-link" href="https://ece.hkust.edu.hk/pingtan" target="_blank" rel="noopener noreferrer">Ping Tan</a>,
 								<a class="pub-author-link" href="https://www.robots.ox.ac.uk/~vedaldi/" target="_blank" rel="noopener noreferrer">Andrea Vedaldi</a>
-								<br>
 							</h5>
 							<h5>
 								CVPR 2026 <strong>Highlight</strong>
@@ -690,9 +815,7 @@
 						</span>
 					</div>
 				</article>
-			</div>
 
-			<div class="box alt">
 				<article class="row gtr-50 gtr-uniform work-item">
 					<div class="col-4">
 						<a href="https://youtu.be/WhEs4tS4mGo" target="_blank" rel="noopener noreferrer" class="video fit external-video">
@@ -715,7 +838,6 @@
 								<a class="pub-author-link" href="https://xuelin-chen.github.io/" target="_blank" rel="noopener noreferrer">Xuelin Chen</a>,
 								<a class="pub-author-link" href="https://ece.hkust.edu.hk/pingtan" target="_blank" rel="noopener noreferrer">Ping Tan</a>,
 								<a class="pub-author-link" href="https://www.xxlong.site/" target="_blank" rel="noopener noreferrer">Xiaoxiao Long</a>
-								<br>
 							</h5>
 							<h5>
 								CVPR 2025 <strong>Oral</strong>
@@ -727,9 +849,7 @@
 						</span>
 					</div>
 				</article>
-			</div>
 
-			<div class="box alt">
 				<article class="row gtr-50 gtr-uniform work-item">
 					<div class="col-4">
 						<span class="image fit thumb cropped-thumb"><img src="images/publications/Step1X-3D.webp" alt="Step1X-3D" loading="lazy" decoding="async" /></span>
@@ -751,7 +871,6 @@
 								Jiarui Liu,
 								Zihao Wang,
 								et al.
-								<br>
 							</h5>
 							<h5>
 								Tech Report, 2025
@@ -765,9 +884,7 @@
 						</span>
 					</div>
 				</article>
-			</div>
 
-			<div class="box alt">
 				<article class="row gtr-50 gtr-uniform work-item">
 					<div class="col-4">
 						<a href="https://youtu.be/CtqA4lwCO-4" target="_blank" rel="noopener noreferrer" class="video fit external-video">
@@ -786,22 +903,18 @@
 								<a class="pub-author-link" href="https://aruichen.github.io/" target="_blank" rel="noopener noreferrer">Rui Chen</a>,
 								<a class="pub-author-link" href="https://xuelin-chen.github.io/" target="_blank" rel="noopener noreferrer">Xuelin Chen</a>,
 								<a class="pub-author-link" href="https://ece.hkust.edu.hk/pingtan" target="_blank" rel="noopener noreferrer">Ping Tan</a>
-								<br>
 							</h5>
 							<h5>
 								ICLR 2024
 								<a href="https://sweetdreamer3d.github.io">[Page]</a>
 								<a href="http://arxiv.org/abs/2310.02596">[Paper]</a>
 								<a href="https://github.com/wyysf-98/SweetDreamer">[Code]</a>
-						</span>
-						</h5>
+							</h5>
 						</span>
 					</div>
 
 				</article>
-			</div>
 
-			<div class="box alt">
 				<article class="row gtr-50 gtr-uniform work-item">
 					<div class="col-4">
 						<a href="https://youtu.be/lehnxcade4I" target="_blank" rel="noopener noreferrer" class="video fit external-video">
@@ -821,7 +934,6 @@
 								<a class="pub-author-link" href="https://peizhuoli.github.io/" target="_blank" rel="noopener noreferrer">Peizhuo Li</a>,
 								<a class="pub-author-link" href="https://igl.ethz.ch/people/sorkine/" target="_blank" rel="noopener noreferrer">Olga Sorkine-Hornung</a>,
 								<a class="pub-author-link" href="https://cfcs.pku.edu.cn/baoquan/" target="_blank" rel="noopener noreferrer">Baoquan Chen</a>
-								<br>
 							</h5>
 							<h5>
 								ACM Transactions on Graphics (SIGGRAPH 2023)
@@ -830,16 +942,12 @@
 								<a href="https://github.com/wyysf-98/GenMM">[Code]</a>
 								<br>
 								<strong>Invited to be presented at SIGGRAPH 2023 Labs Demo!</strong>
-						</span>
-						</h5>
+							</h5>
 						</span>
 					</div>
 
 				</article>
-			</div>
 
-
-			<div class="box alt">
 				<article class="row gtr-50 gtr-uniform work-item">
 					<div class="col-4">
 						<a href="https://youtu.be/-buKPdBmLWo" target="_blank" rel="noopener noreferrer" class="video fit external-video">
@@ -858,22 +966,18 @@
 								<a class="pub-author-link" href="https://xuelin-chen.github.io/" target="_blank" rel="noopener noreferrer">Xuelin Chen</a><sup>*†</sup>,
 								<a class="pub-author-link" href="https://scholar.google.com/citations?user=Bt4uDWMAAAAJ" target="_blank" rel="noopener noreferrer">Jue Wang</a>,
 								<a class="pub-author-link" href="https://cfcs.pku.edu.cn/baoquan/" target="_blank" rel="noopener noreferrer">Baoquan Chen</a>
-								<br>
 							</h5>
 							<h5>
 								CVPR 2023
 								<a href="https://wyysf-98.github.io/Sin3DGen/">[Page]</a>
 								<a href="https://arxiv.org/pdf/2304.12670.pdf">[Paper]</a>
 								<a href="https://github.com/wyysf-98/Sin3DGen">[Code]</a>
-						</span>
-						</h5>
+							</h5>
 						</span>
 					</div>
 
 				</article>
-			</div>
 
-			<div class="box alt">
 				<article class="row gtr-50 gtr-uniform work-item">
 					<div class="col-4">
 						<a href="https://youtu.be/cEsGnqwdtvM" target="_blank" rel="noopener noreferrer" class="video fit external-video">
@@ -893,15 +997,13 @@
 								<a class="pub-author-link" href="https://www.cs.tau.ac.il/~dcor/" target="_blank" rel="noopener noreferrer">Daniel Cohen-Or</a>,
 								<a class="pub-author-link" href="https://geometry.cs.ucl.ac.uk/" target="_blank" rel="noopener noreferrer">Niloy J. Mitra</a>,
 								<a class="pub-author-link" href="https://cfcs.pku.edu.cn/baoquan/" target="_blank" rel="noopener noreferrer">Baoquan Chen</a>
-								<br>
 							</h5>
 							<h5>
 								Eurographics 2022
 								<a href="https://wyysf-98.github.io/MoCo_Flow/">[Page]</a>
 								<a href="https://arxiv.org/pdf/2106.04477.pdf">[Paper]</a>
 								<a href="https://github.com/wyysf-98/MoCo_Flow">[Code]</a>
-						</span>
-						</h5>
+							</h5>
 						</span>
 					</div>
 
@@ -917,27 +1019,57 @@
 				<table>
 					<tbody>
 						<tr>
-							<td><b><a href="https://ai.meta.com/research/">Meta AI</a></b> | Research intern</td>
+							<td>
+								<span class="exp-org">
+									<img class="exp-icon" src="images/experience/meta.svg" alt="" width="20" height="20" loading="lazy" decoding="async" />
+									<span><b><a href="https://ai.meta.com/research/">Meta AI</a></b> | Research intern</span>
+								</span>
+							</td>
 							<td>London, UK</td>
 						</tr>
 						<tr>
-							<td><b><a href="https://www.stepfun.com/">StepFun</a></b> | Research intern</td>
+							<td>
+								<span class="exp-org">
+									<img class="exp-icon" src="images/experience/stepfun.svg" alt="" width="20" height="20" loading="lazy" decoding="async" />
+									<span><b><a href="https://www.stepfun.com/">StepFun</a></b> | Research intern</span>
+								</span>
+							</td>
 							<td>Remote</td>
 						</tr>
 						<tr>
-							<td><b><a href="https://research.adobe.com/">Adobe Research</a></b> | Research intern</td>
+							<td>
+								<span class="exp-org">
+									<img class="exp-icon" src="images/experience/adobe.svg" alt="" width="20" height="20" loading="lazy" decoding="async" />
+									<span><b><a href="https://research.adobe.com/">Adobe Research</a></b> | Research intern</span>
+								</span>
+							</td>
 							<td>London, UK</td>
 						</tr>
 						<tr>
-							<td><b><a href="https://ailab.tencent.com/ailab/zh/index">Tencent AI Lab</a></b> | Research intern</td>
+							<td>
+								<span class="exp-org">
+									<img class="exp-icon" src="images/experience/tencent-ailab.png" alt="" width="20" height="20" loading="lazy" decoding="async" />
+									<span><b><a href="https://ailab.tencent.com/ailab/zh/index">Tencent AI Lab</a></b> | Research intern</span>
+								</span>
+							</td>
 							<td>Shenzhen, China</td>
 						</tr>
 						<tr>
-							<td><b><a href="https://vcl.pku.edu.cn/">Visual Computing and Learning Lab (VCL), Peking University</a></b> | Visiting student</td>
+							<td>
+								<span class="exp-org">
+									<img class="exp-icon" src="images/experience/pku-vcl.svg" alt="" width="20" height="20" loading="lazy" decoding="async" />
+									<span><b><a href="https://vcl.pku.edu.cn/">VCL, Peking University</a></b> | Visiting student</span>
+								</span>
+							</td>
 							<td>Beijing, China</td>
 						</tr>
 						<tr>
-							<td><b><a href="https://fve.bfa.edu.cn/English.htm">AICFVE, Beijing Film Academy</a></b> | Research intern</td>
+							<td>
+								<span class="exp-org">
+									<img class="exp-icon" src="images/experience/bfa.svg" alt="" width="20" height="20" loading="lazy" decoding="async" />
+									<span><b><a href="https://fve.bfa.edu.cn/English.htm">AICFVE, Beijing Film Academy</a></b> | Research intern</span>
+								</span>
+							</td>
 							<td>Remote</td>
 						</tr>
 					</tbody>
@@ -956,11 +1088,11 @@
 			<div class="row">
 				<div class="col-12 col-12-xsmall">
 					<ul>
-						<li>Two Special prizes in the Pilot Cup National University High Performance Computing Competition ($30k)</li>
-						<li>The First Prize in the 12th Intel Cup Undergraduate Software Innovation Competition ($2.2k)</li>
+						<li>Two Special Prizes in the Pilot Cup National University High Performance Computing Competition ($30k)</li>
+						<li>The National First Prize in the 12th Intel Cup Undergraduate Software Innovation Competition ($2.2k)</li>
 						<li>Two Second Prizes in Asian Student Supercomputer Challenge (ASC 2018 and 2019)</li>
-						<li>The Second Prize in China Undergraduate Mathematical Contest in Modeling</li>
-						<li>The First scholarship and titled the Superior Student in Shandong University (three times)
+						<li>The National Second Prize in the China Undergraduate Mathematical Contest in Modeling</li>
+						<li>The First scholarship and Merit Student title at Shandong University (three times)
 						</li>
 					</ul>
 				</div>
